@@ -407,17 +407,21 @@ NAVBAR
 
 }
 
-.logo-icon{
-
-    width:22px;
-
-    height:22px;
-
-    background:#ccff00;
-
-   /* border-radius:50%; */
-
+.navbar {
+  display: flex;
+  justify-content: flex-end; /* Pushes the logo to the far right */
+  align-items: center;       /* Centers it vertically */
+  padding: 20px 40px;        /* Adds clean spacing around the edge */
+  width: 100%;
+  box-sizing: border-box;
 }
+
+/* Set a clear height so your custom logo doesn't render too large */
+.nav-logo {
+  height: 32px; 
+  width: auto;
+}
+
 
 .login-btn{
 
@@ -764,17 +768,12 @@ padding:30px;
 <section class="hero-section">
 
 <nav class="navbar">
-
-<div class="logo-container">
-
-<div class="logo-icon"></div>
-
-<img src="wm logo.png" alt="Logo"/>
-
-</div>
-
-
+  <div class="logo-container">
+    <!-- Removed the old logo-icon div -->
+    <img src="wm_logo.png" alt="Logo" class="nav-logo" />
+  </div>
 </nav>
+
 
 <div class="hero-content">
 
