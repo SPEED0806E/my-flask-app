@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dictionary</title>
+    <!-- Importing a clean, modern font -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, rgba(234, 255, 230, 0.4), transparent 40%),
+                        radial-gradient(circle at top left, rgba(240, 240, 255, 0.4), transparent 40%),
+                        #ffffff;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Aligns content directly to the top */
+            min-height: 100vh;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        /* Top-aligned Search Box Layout */
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 16px 24px;
+            font-size: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: #ffffff;
+        }
+
+        input[type="text"]:focus {
+            border-color: #dfff00;
+            box-shadow: 0 0 0 3px rgba(223, 255, 0, 0.15);
+        }
+
+        /* Bright Lime Green Button matching your image layout */
+        .btn-primary {
+            background-color: #dfff00; 
+            color: #000000;
+            border: none;
+            padding: 16px 32px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #ccff00;
+            transform: translateY(-1px);
+        }
+
+        /* Meaning Display Card */
+        .result-card {
+            background: #f9fafb;
+            border: 1px solid #f3f4f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .result-card h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #9ca3af;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .result-card p {
+            font-size: 1.2rem;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Search History Section */
+        .history-section {
+            margin-top: 3rem;
+            text-align: left;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 2rem;
+        }
+
+        .history-section h2 {
+            font-size: 1.25rem;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            text-transform: capitalize;
+        }
+
+        .history-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-word {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .history-meaning {
+            color: #4b5563;
+            margin-top: 4px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main Form aligned directly at the top -->
+        <form method="POST"> 
+            <div class="search-box">
+                <input type="text" name="word" placeholder="Enter a word to search..." required>
+                <button type="submit" class="btn-primary">SEARCH</button>
+            </div>
+            
+            <!-- Conditional Dynamic Meaning Display -->
+            {% if meaning %}
+            <div class="result-card">
+                <h3>Meaning</h3>
+                <p>{{ meaning }}</p>
+            </div>
+            {% endif %}
+        </form>
+
+        <!-- History Container -->
+        {% if history %}
+        <div class="history-section">
+            <h2>Recent Search History</h2>
+            {% for item in history %}
+            <div class="history-item">
+                <div class="history-word">{{ item.word }}</div>
+                <div class="history-meaning">{{ item.meaning }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
