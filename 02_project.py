@@ -49,5 +49,3 @@ print(len(word))
 # ADDED NEW WORDS
 # READ DATA FROM A JSON FILE (json.load)
 # SAVED THE DATA PERMANENTLY(json.dump)
-
-

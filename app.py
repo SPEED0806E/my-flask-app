@@ -1,7 +1,23 @@
 from flask import Flask, render_template, request     # bring the Flask tool into my program   # request -> flask, requests -> API
 import json
+import sqlite3
 app = Flask(__name__) # creating a flask application 'create my website' - turn this file in flask application and save it in a variable called app
 
+conn = sqlite3.connect("meanings.db")
+
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS meanings
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word TEXT,
+    meaning TEXT
+)
+""")
+
+conn.commit()
+conn.close()
 
 history = []
 @app.route("/", methods=["GET","POST"]) #/ represents the homepage (http://127.0.0.1.5000/)
@@ -34,6 +50,22 @@ def intro():
                 meaning = word.get(user_input, "word not found")
                 history.append({"word":user_input,
                                 "meaning":meaning})
+
+                conn = sqlite3.connect("meanings.db")
+                cursor = conn.cursor()
+
+                cursor.execute("""
+                INSERT INTO meanings (word, meaning)
+                VALUES (?, ?)
+                """, (
+                     user_input,
+                     meaning,
+                ))
+
+                conn.commit()
+                conn.close()
+
+                print('Meaning added successfully !')
         
         
 
@@ -46,4 +78,3 @@ if __name__ == '__main__':
      import os
      port = int(os.environ.get("PORT", 5000))
      app.run(host='0.0.0.0', port=port)
-
