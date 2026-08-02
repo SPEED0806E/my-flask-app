@@ -16,10 +16,8 @@ CREATE TABLE IF NOT EXISTS meanings
 )
 """)
 
-conn.commit()
-conn.close()
-
 history = []
+
 @app.route("/", methods=["GET","POST"]) #/ represents the homepage (http://127.0.0.1.5000/)
 def home():
 
@@ -50,9 +48,6 @@ def intro():
                 meaning = word.get(user_input, "word not found")
                 history.append({"word":user_input,
                                 "meaning":meaning})
-
-                conn = sqlite3.connect("meanings.db")
-                cursor = conn.cursor()
 
                 cursor.execute("""
                 INSERT INTO meanings (word, meaning)

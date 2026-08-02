@@ -81,6 +81,5 @@ else:
         word[user_input] = user_add # to add a new key : value pair in dictionary
         print('word added successfully')
         print(word)
-
     else:
         print('ok')
