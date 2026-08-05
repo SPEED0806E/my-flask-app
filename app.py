@@ -1,20 +1,22 @@
 from flask import Flask, render_template, request     # bring the Flask tool into my program   # request -> flask, requests -> API
 import json
-import sqlite3
+# import sqlite3
+import requests
+
 app = Flask(__name__) # creating a flask application 'create my website' - turn this file in flask application and save it in a variable called app
 
-conn = sqlite3.connect("meanings.db")
+# conn = sqlite3.connect("meanings.db", check_same_thread=False)
 
-cursor = conn.cursor()
+# cursor = conn.cursor()
 
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS meanings
-(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    word TEXT,
-    meaning TEXT
-)
-""")
+# cursor.execute("""
+# CREATE TABLE IF NOT EXISTS meanings
+# (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     word TEXT,
+#     meaning TEXT
+# )
+# """)
 
 history = []
 
@@ -42,6 +44,11 @@ def intro():
     
     if request.method == "POST":
         user_input = request.form["word"].strip().lower() # gets the value entered by the user in the form field named "word", and stores in the variable user_input
+
+        url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{user_input}"
+        response = requests.get(url)
+        print(response.status_code)
+        print(response.json())
     
         with open("02_dictionary.json", "r") as file:
                 word = json.load(file)
@@ -49,16 +56,16 @@ def intro():
                 history.append({"word":user_input,
                                 "meaning":meaning})
 
-                cursor.execute("""
-                INSERT INTO meanings (word, meaning)
-                VALUES (?, ?)
-                """, (
-                     user_input,
-                     meaning,
-                ))
+                # cursor.execute("""
+                # INSERT INTO meanings (word, meaning)
+                # VALUES (?, ?)
+                # """, (
+                #      user_input,
+                #      meaning,
+                # ))
 
-                conn.commit()
-                conn.close()
+                # conn.commit()
+                #conn.close()
 
                 print('Meaning added successfully !')
         
