@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>WordMean</title>
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='wordmean logo.png') }}"
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='wordmean logo.png') }}">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -480,15 +480,29 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
 </p>
 
 <div class="cta-group">
-
-<a href="/intro" class="btn-primary">
-
+    <a href="/intro" class="btn-primary"></a>
 Get Started Now
-
 </a>
-
+<button id="cameraBtn" class="btn-primary">Practise Speaking</button>
 </div>
 
-</div>
+</div><br><br>
+
+<video
+    id="video" width="500" autoplay playsinline style="display: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.2);">
+
+    </video>
 
 </section>
+<script>
+    const cameraBtn = document.getElementById("cameraBtn"); // find the button
+    const video = document.getElementById("video");  // find the video box
+
+    cameraBtn.addEventListener("click", async() => {
+        const stream = await navigator.mediaDevices.getUserMedia({video: true});
+        video.srcObject = stream;
+        video.style.display = "block";
+    }); // when the button is clicked ask browser can i use the webcam
+</script>
+</body>
+</html>
