@@ -1,0 +1,6 @@
+why am i feeling .js needs for energy than .py ? 
+need to add a button for turning camera off
+
+webcam -> mediapipe -> face landmarks -> .js -> looking at camera or away
+
+Media pipe gives us data. We decide what that data means

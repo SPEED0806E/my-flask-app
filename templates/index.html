@@ -488,13 +488,23 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
 
 <video
     id="video" width="500" autoplay playsinline style="display: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.2);">
+</video>
 
-    </video>
+<p id="faceStatus" style="font-size: 22px; font-weight: bold; margin-top: 20px;">No Face Detected</p>
 
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_dectection.js"></script>
 <script>
     const cameraBtn = document.getElementById("cameraBtn"); // find the button
     const video = document.getElementById("video");  // find the video box
+
+    const faceStatus = document.getElementById("faceStatus");
+    const faceDetection = newFaceDetection({locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`;
+    }
+});
 
     cameraBtn.addEventListener("click", async() => {
         const stream = await navigator.mediaDevices.getUserMedia({video: true});
@@ -502,5 +512,6 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
         video.style.display = "block";
     }); // when the button is clicked ask browser can i use the webcam
 </script>
+
 </body>
 </html>
