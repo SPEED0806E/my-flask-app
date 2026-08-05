@@ -48,29 +48,30 @@ def intro():
         url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{user_input}"
         response = requests.get(url)
         print(response.status_code)
-        print(response.json())
+        # print(response.json())
+        data = response.json()
+        # print(data[0]["meanings"][0]["definitions"][0]["definition"])
+        api_meaning = data[0]["meanings"][0]["definitions"][0]["definition"]
     
         with open("02_dictionary.json", "r") as file:
                 word = json.load(file)
-                meaning = word.get(user_input, "word not found")
+                meaning = word.get(user_input)
                 history.append({"word":user_input,
                                 "meaning":meaning})
 
                 # cursor.execute("""
                 # INSERT INTO meanings (word, meaning)
-                # VALUES (?, ?)
+                # VALUES (?, ?conn.close()
+
+                print('Meaning added successfully !')
+        
                 # """, (
                 #      user_input,
                 #      meaning,
                 # ))
 
                 # conn.commit()
-                #conn.close()
-
-                print('Meaning added successfully !')
-        
-        
-
+                #
     return render_template("intro.html", history=history)
 
 
