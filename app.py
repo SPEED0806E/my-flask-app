@@ -35,7 +35,7 @@ def home():
     #         history.append({"word":user_input,
     #                         "meaning":meaning})
     
-    return render_template("index.html", history=history)
+    return render_template("index.html")
 
 # @app.route("/intro", methods=["GET","POST"])
 # def intro():
@@ -79,7 +79,7 @@ def home():
 #                 #
 #     return render_template("intro.html", history=history, meaning=meaning)
 
-app.route("/intro", methods=["GET", "POST"])
+@app.route("/intro", methods=["GET", "POST"])
 def intro():
 
      meaning = ""
@@ -91,8 +91,12 @@ def intro():
                words = json.load(file)
                meaning = words.get(user_input)
                if meaning is None:
+                    print("json didn't find the word.")
+
                     url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{user_input}"
                     response = requests.get(url)
+                    print("status code:", response.status_code)
+                    print("response :", response.text[:200])
 
                     if response.status_code == 200:
                          data = response.json()
@@ -100,6 +104,10 @@ def intro():
 
                     else:
                          meaning = "Word not found"
+                         history.append({
+                              "word" : user_input,
+                              "meaning" : meaning
+                         })
 
      return render_template("intro.html", meaning=meaning, history=history)
 
