@@ -3,6 +3,7 @@ import sqlite3
 import requests
 
 print('New flask')
+print('LIVE')
 
 app = Flask(__name__) # creating a flask application 'create my website' - turn this file in flask application and save it in a variable called app
 
@@ -16,6 +17,15 @@ CREATE TABLE IF NOT EXISTS meanings
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     word TEXT,
     meaning TEXT
+)
+""")
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT
 )
 """)
 
