@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request     # bring the Flask tool into my program   # request -> flask, requests -> API
+from flask import Flask, render_template, request, session    # bring the Flask tool into my program   # request -> flask, requests -> API
 import sqlite3
 import requests
 
@@ -6,6 +6,8 @@ print('New flask')
 print('LIVE')
 
 app = Flask(__name__) # creating a flask application 'create my website' - turn this file in flask application and save it in a variable called app
+
+app.secret_key = "wordmean_secret_key"
 
 conn = sqlite3.connect("meanings.db", check_same_thread=False)
 
@@ -120,7 +122,12 @@ def login():
         user = cursor.fetchone()
 
         if user:
+            session["user_id"] = user[0]
+            session["username"] = user[1]
             print("Login successful")
+            print(session)
+
+            return "Welcome" + ' ' + session["username"]
         else:
             print("Invalid username or password")
 
