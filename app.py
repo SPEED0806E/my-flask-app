@@ -84,6 +84,27 @@ def intro():
 
     return render_template("intro.html", history=history, meaning=meaning)
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        cursor.execute("""
+        INSERT INTO users (username, password)
+        VALUES (?, ?)
+        """, (username, password))
+
+        conn.commit()
+
+        print(username)
+        print(password)
+
+        print("User created successfully !")
+
+    return render_template("signup.html")
+
 
 
 
