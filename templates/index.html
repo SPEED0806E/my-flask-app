@@ -495,13 +495,13 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_dectection.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
 <script>
     const cameraBtn = document.getElementById("cameraBtn"); // find the button
     const video = document.getElementById("video");  // find the video box
 
     const faceStatus = document.getElementById("faceStatus");
-    const faceDetection = newFaceDetection({locateFile: (file) => {
+    const faceDetection = new FaceDetection({locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`;
     }
 });
