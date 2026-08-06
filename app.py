@@ -40,17 +40,25 @@ def intro():
         response = requests.get(url)
 
         print(response.status_code)
-        print(response.json())
+        print(response.text)
+        # print(response.json())
 
-        data = response.json()
-        meaning = data[0]["meanings"][0]["definitions"][0]["definition"]
+        if response.status_code == 200:
+            data = response.json()
+            meaning = data[0]["meanings"][0]["definitions"][0]["definition"]
 
-        print(f"{user_input} :", meaning)
+        else:
+            meaning = "Word not found"
+
+
+
+        print(f"{user_input} : {meaning}")
     
         history.append({
              "word":user_input,
              "meaning":meaning})
         print(history)
+
 
         cursor.execute("""
         INSERT INTO meanings (word, meaning)
@@ -64,7 +72,7 @@ def intro():
         
         
 
-    return render_template("intro.html", history=history, meaning="hello from flask")
+    return render_template("intro.html", history=history, meaning=meaning)
 
 
 
