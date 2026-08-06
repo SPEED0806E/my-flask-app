@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session    # bring the Flask tool into my program   # request -> flask, requests -> API
+from flask import Flask, render_template, request, session, redirect, url_for  # bring the Flask tool into my program   # request -> flask, requests -> API
 import sqlite3
 import requests
 
@@ -40,6 +40,8 @@ def home():
 
 @app.route("/intro", methods=["GET","POST"])
 def intro():
+
+    print(session)
 
 
     meaning = ""
@@ -84,7 +86,7 @@ def intro():
         
         
 
-    return render_template("intro.html", history=history, meaning=meaning)
+    return render_template("intro.html", history=history, meaning=meaning, username=session.get("username"))
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -127,7 +129,7 @@ def login():
             print("Login successful")
             print(session)
 
-            return "Welcome" + ' ' + session["username"]
+            return redirect(url_for("intro"))
         else:
             print("Invalid username or password")
 

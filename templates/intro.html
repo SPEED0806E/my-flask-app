@@ -139,9 +139,10 @@
     </style>
 </head>
 <body>
-
+    
     <div class="container">
         <!-- Main Form aligned directly at the top -->
+         <h1>Welcome, {{ username }}</h1>
         <form action="/intro" method="POST"> 
             <div class="search-box">
                 <input type="text" name="word" placeholder="Enter a word to search..." required>
