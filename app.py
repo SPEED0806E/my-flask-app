@@ -106,6 +106,26 @@ def signup():
     return render_template("signup.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        cursor.execute("""
+        SELECT * FROM users WHERE username = ? AND password = ?
+        """, (username, password))
+
+        user = cursor.fetchone()
+
+        if user:
+            print("Login successful")
+        else:
+            print("Invalid username or password")
+
+    return render_template("login.html")
+
 
 
 if __name__ == '__main__':
