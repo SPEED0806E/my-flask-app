@@ -163,8 +163,8 @@
             <h2>Recent Search History</h2>
             {% for item in history %}
             <div class="history-item">
-                <div class="history-word">{{ item[0] }}</div>
-                <div class="history-meaning">{{ item[1] }}</div>
+                <div class="history-word">{{ item.word }}</div>
+                <div class="history-meaning">{{ item.meaning }}</div>
             </div>
             {% endfor %}
         </div>

@@ -69,13 +69,6 @@ def intro():
                 #conn.close()
 
         print('Meaning added successfully !')
-
-        cursor.execute("""
-        SELECT word, meaning FROM meanings ORDER BY id DESC
-        """)
-
-        history = cursor.fetchall()
-        
         
         
 
