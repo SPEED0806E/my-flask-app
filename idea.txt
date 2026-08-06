@@ -4,3 +4,13 @@ need to add a button for turning camera off
 webcam -> mediapipe -> face landmarks -> .js -> looking at camera or away
 
 Media pipe gives us data. We decide what that data means
+
+Flask app
+Dictionary API integration
+SQLite database
+Search history
+User registration
+Login system
+Sessions
+Automatic redirect after login 
+Personalized greeting ("Welcome, Arpita)
