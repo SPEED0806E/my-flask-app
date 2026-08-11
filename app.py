@@ -3,6 +3,9 @@ import sqlite3
 import requests
 import json
 import random
+from openai import OpenAI
+
+client = OpenAI()
 
 print('New flask')
 print('LIVE')
@@ -143,10 +146,16 @@ def login():
 
 @app.route("/learn")
 def learn():
-    word = random.choice(list(learn_words.keys()))
-    meaning = learn_words[word]
 
-    return render_template("learn.html", word=word, meaning=meaning)
+    response = client.responses.create(model = "gpt-5-mini", input="Give me one useful English vocabulary word with its short meaning.")
+
+    word = response.output_text
+
+
+    # word = random.choice(list(learn_words.keys()))
+    # meaning = learn_words[word]
+
+    return render_template("learn.html", word=word)
 
 if __name__ == '__main__':
      import os
