@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, session, redirect, url_for  # bring the Flask tool into my program   # request -> flask, requests -> API
 import sqlite3
 import requests
+import json
+import random
 
 print('New flask')
 print('LIVE')
@@ -32,6 +34,9 @@ CREATE TABLE IF NOT EXISTS users
 """)
 
 history = []
+
+with open("learn_words.json", "r") as file:
+    learn_words = json.load(file)
 
 @app.route("/", methods=["GET","POST"]) #/ represents the homepage (http://127.0.0.1.5000/)
 def home():
@@ -136,6 +141,12 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/learn")
+def learn():
+    word = random.choice(list(learn_words.keys()))
+    meaning = learn_words[word]
+
+    return render_template("learn.html", word=word, meaning=meaning)
 
 if __name__ == '__main__':
      import os
