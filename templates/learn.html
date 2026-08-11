@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +10,143 @@
     <h2>{{ word }}</h2>
     <p>{{ meaning }}</p>
     <a href="/learn"><button>Next word</button></a>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Words - WordMean</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='wordmean logo.png') }}">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: radial-gradient(circle at 10% 20%, rgba(220, 252, 231, .55), transparent 40%),
+                        radial-gradient(circle at 90% 10%, rgba(243, 232, 255, .55), transparent 40%),
+                        #ffffff;
+            color: #111827;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-icon {
+            width: 22px;
+            height: 22px;
+            background: #ccff00;
+            border-radius: 50%;
+        }
+        .learn-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 40px 20px;
+        }
+        .word-card {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .06);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .card-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #65a30d;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(220, 252, 231, 0.6);
+            padding: 6px 16px;
+            border-radius: 50px;
+        }
+        .word-title {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+        .word-meaning {
+            font-size: 18px;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+        .btn-next {
+            display: inline-block;
+            text-decoration: none;
+            background: #ccff00;
+            color: #000;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+        }
+        @media(max-width: 480px) {
+            .word-card {
+                padding: 35px 20px;
+            }
+            .word-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo-container">
+            <div class="logo-icon"></div>
+            WordMean
+        </a>
+    </nav>
+    <section class="learn-section">
+        <div class="word-card">
+            <span class="card-label">Learn a new word</span>
+            <h2 class="word-title">{{ word }}</h2>
+            <p class="word-meaning">{{ meaning }}</p>
+            <a href="/learn" class="btn-next">Next Word &rarr;</a>
+        </div>
+    </section>
 </body>
 </html>
