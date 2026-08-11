@@ -3,9 +3,7 @@ import sqlite3
 import requests
 import json
 import random
-from google import genai
 
-client = genai.Client()
 
 print('New flask')
 print('LIVE')
