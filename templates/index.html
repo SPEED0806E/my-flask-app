@@ -435,6 +435,25 @@ padding:30px;
 
 }
 
+.camera-box {
+    position: relative;
+    display: inline-block;
+}
+
+#lookPoint {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    font-weight: bold;
+    color:blue;
+    font-size: 18px;
+
+    display: none;
+    z-index: 10;
+}
+
 </style>
 
 </head>
@@ -485,10 +504,14 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
 </div>
 
 </div><br><br>
-
+<div class="camera-box">
 <video
     id="video" width="500" autoplay playsinline style="display: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.2);">
 </video>
+<div id="lookPoint">🔵
+    <span> look here</span><br>🔵
+</div>
+</div>
 
 <p id="faceStatus" style="font-size: 22px; font-weight: bold; margin-top: 20px;">No Face Detected</p>
 
@@ -510,6 +533,7 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
         const stream = await navigator.mediaDevices.getUserMedia({video: true});
         video.srcObject = stream;
         video.style.display = "block";
+        document.getElementById("lookPoint").style.display = "block";
     }); // when the button is clicked ask browser can i use the webcam
 </script>
 
