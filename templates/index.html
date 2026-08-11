@@ -508,8 +508,8 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
 <video
     id="video" width="500" autoplay playsinline style="display: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.2);">
 </video>
-<div id="lookPoint">🔵
-    <span> look here</span><br>🔵
+<div id="lookPoint">
+    <span> look here</span><br><br>🔵
 </div>
 </div>
 
@@ -529,9 +529,31 @@ Learn new words effortlessly. Every word you search is saved automatically, so y
     }
 });
 
+faceDetection.setOptions({
+        model: 'short',
+        minDectectionConfidence: 0.5
+    });
+
+    faceDetection.onResults((results) => {
+        if (results.detections.lenght > 0) {
+            faceStatus.textContent = "Face Detected";
+        } else {
+            faceStatus.textContent = "No Face Detected";
+        }
+    });
+
     cameraBtn.addEventListener("click", async() => {
         const stream = await navigator.mediaDevices.getUserMedia({video: true});
         video.srcObject = stream;
+        const camera = new Camera(video, {onFrame: async () => {
+            await faceDetection.send({image:video});
+        },
+        width: 500,
+        height: 375
+    });
+
+    camera.start(); 
+    
         video.style.display = "block";
         document.getElementById("lookPoint").style.display = "block";
     }); // when the button is clicked ask browser can i use the webcam
