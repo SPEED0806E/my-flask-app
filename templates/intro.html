@@ -136,10 +136,34 @@
             margin-top: 4px;
             font-size: 0.95rem;
         }
+
+        
+
+.right-arrow {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: #111827;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    z-index: 1000;
+}
+.right-arrow:hover {
+    background: #ccff00;
+    color: black;
+}
     </style>
 </head>
 <body>
-    
+    <a href="/learn" class="right-arrow">&rarr;</a>
     <div class="container">
         <!-- Main Form aligned directly at the top -->
          <h1>Welcome, {{ username.split()[0] }}</h1>
