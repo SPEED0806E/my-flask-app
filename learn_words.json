@@ -1,1 +1,14 @@
-{ "meticulous" : "very careful and precise", "eloquent" : "fluent or persuavsive in speaking or writing", "curious" : "wanting to know or learn something"}
+{ "meticulous" : "very careful and precise",
+  "eloquent" : "fluent or persuavsive in speaking or writing", 
+  "curious" : "wanting to know or learn something",
+  "adapt": "To change easily to fit new situations in life.",
+  "bloom": "To grow open up and become healthy and beautiful.",
+  "bright": "Shining with a lot of light, like a star in space.",
+  "cosmic": "Huge, grand, and beautiful like the universe.",
+  "evolve": "To grow and improve slowly over time in nature or life.",
+  "fusion": "Joining different things together to make something powerful.",
+  "galaxy": "A massive, beautiful system of stars and planets.",
+  "genius": "A person who is exceptionally smart, creative, or talented.",
+  "glow": "To give off a soft, warm, and happy light.",
+  "smart": "Clever, quick to learn, and efficient like modern technology."
+}
