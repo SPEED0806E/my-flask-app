@@ -100,6 +100,7 @@ def signup():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        first_name = username.split()[0]
 
         cursor.execute("""
         INSERT INTO users (username, password)
