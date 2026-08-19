@@ -53,7 +53,7 @@ def intro():
     meaning = ""
     
     if request.method == "POST":
-        user_input = request.form["word"].strip().lower() # gets the value entered by the user in the form field named "word", and stores in the variable user_input
+        user_input = request.form["word"].strip().capitalize() # gets the value entered by the user in the form field named "word", and stores in the variable user_input
 
         url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{user_input}"
 
@@ -100,7 +100,6 @@ def signup():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        first_name = username.split()[0]
 
         cursor.execute("""
         INSERT INTO users (username, password)
@@ -123,6 +122,7 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+    
 
         cursor.execute("""
         SELECT * FROM users WHERE username = ? AND password = ?
