@@ -108,10 +108,16 @@ def signup():
 
         conn.commit()
 
+        user_id = cursor.lastrowid
+
+        session["user_id"] = user_id
+        session["username"] = username
+
         print(username)
         print(password)
 
-        print("User created successfully !")
+        print(f"User {username} created successfully !")
+        return redirect(url_for("intro"))
 
     return render_template("signup.html")
 
@@ -136,7 +142,7 @@ def login():
             print("Login successful")
             print(session)
 
-            return redirect(url_for("intro"))
+            #return redirect(url_for("intro"))
         else:
             print("Invalid username or password")
 
