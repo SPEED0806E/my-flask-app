@@ -142,7 +142,7 @@ def login():
             print("Login successful")
             print(session)
 
-            #return redirect(url_for("intro"))
+            return redirect(url_for("intro"))
         else:
             print("Invalid username or password")
 
